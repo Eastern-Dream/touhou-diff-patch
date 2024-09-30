@@ -1,4 +1,3 @@
-# touhou-disc-patch
 This repository stores the diff for Touhou game update. ZUN's executable touhou game patch are notoriously hard to run and use, due to needing Japanese system locale and sometimes directory picker dialog in Japanese that is difficult to understand. I make the diff to redistribute it for anybody to easily patch their copy of Touhou games.
 
 ## Procedure
