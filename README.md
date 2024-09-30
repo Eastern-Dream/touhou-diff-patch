@@ -16,13 +16,11 @@ This process is repeated between each patch stage until the latest version is re
 ## Patch procedure
 Only apply to original game directory, pre-patched one may not work! Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply run:
 ```
-patch -Np1 -d directory_to_patch/ < patch_to_apply.diff
+patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ < patch_to_apply.diff
 ```
-When the `--forward` or `-N` flag is used, it will automatically skip invalid or previously applied patch file, only leaving behind backup and reject files. Thus, it is safe to use this command even on wrong diff.
-
-If you want to clean up the backup and reject files, simply run this command within the game directory
+When the set of flags above is used, it will automatically skip invalid or previously applied patch file, only leaving reject files. Thus, it is safe to use this command even on wrong diff. If you want to clean up the backup and reject files, simply run this command 
 ```
-find . -name '*.rej' -o -name '*.orig' -exec rm {} \;
+find directory_with_bad_patch/ -name '*.rej' -exec rm {} \;
 ```
 
 ## Caveats
