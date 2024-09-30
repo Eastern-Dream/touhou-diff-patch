@@ -1,10 +1,10 @@
 This repository stores the diff for Touhou game update. ZUN's executable touhou game patch are notoriously hard to run and use, due to needing Japanese system locale and sometimes directory picker dialog in Japanese that is difficult to understand. I make the diff to redistribute it for anybody to easily patch their copy of Touhou games.
 
-## Procedure
+## Diff Procedure
 Starts with the original ver 1.00 directory for each game (or the oldest patchable version that is available).
 
 1. Create a copy of the game directory to be patched
-2. Drop ZUN executable patch are dropped into game directory
+2. Drop ZUN executable patch into game directory
 3. Run ZUN executable patch through WINE 32-bit (with `LC_ALL=ja_JP.UTF-8`)
 4. Remove ZUN executable patch from the game directory
 5. Generate diff via `diff -Naur before-patch/ after-patch/ > name_of_patch.diff`
@@ -13,7 +13,7 @@ The diff file should be named after the name of the ZUN executable patch minus t
 
 This process is repeated between each patch stage until the latest version is reached. Contributors should follow the same procedure.
 
-## Patch procedure
+## Patch Procedure
 Only apply to original game directory, pre-patched one may not work! Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply dry-run:
 ```
 patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ --dry-run < patch_to_apply.diff
