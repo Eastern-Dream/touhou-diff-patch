@@ -19,7 +19,8 @@ Only apply to original game directory, pre-patched one may not work! Open `readm
 patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ --dry-run < patch_to_apply.diff
 ```
 When the set of flags above is used, it will automatically skip invalid or previously applied patch file, only leaving reject files. Thus, it is safe to use this command even on wrong diff without dry run. If the patch applies cleanly, remove the `--dry-run` flag and re-run the command.
-If you want to clean up reject files, simply run this command:
+
+In case there were bad patches applied and it left a bunch of reject files, simply run this command to clean up:
 ```
 find directory_with_bad_patch/ -name '*.rej' -exec rm {} \;
 ```
