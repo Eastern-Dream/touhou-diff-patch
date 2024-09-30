@@ -14,14 +14,17 @@ The diff file should be named after the name of the ZUN executable patch minus t
 This process is repeated between each patch stage until the latest version is reached. Contributors should follow the same procedure.
 
 ## Patch procedure
-Only apply to original game directory, pre-patched one may not work! Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply run:
+Only apply to original game directory, pre-patched one may not work! Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply dry-run:
 ```
-patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ < patch_to_apply.diff
+patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ --dry-run < patch_to_apply.diff
 ```
-When the set of flags above is used, it will automatically skip invalid or previously applied patch file, only leaving reject files. Thus, it is safe to use this command even on wrong diff. If you want to clean up the backup and reject files, simply run this command 
+When the set of flags above is used, it will automatically skip invalid or previously applied patch file, only leaving reject files. Thus, it is safe to use this command even on wrong diff without dry run. If the patch applies cleanly, remove the `--dry-run` flag and re-run the command.
+If you want to clean up reject files, simply run this command:
 ```
 find directory_with_bad_patch/ -name '*.rej' -exec rm {} \;
 ```
+
+TODO: Find good way to automate applying all patch in-order, and only apply if the entire patch applies cleanly
 
 ## Caveats
 For contributors, it is important that you get original game directory with every assets in it. Some distributed copies may have intentionally removed original game asset, for example .bmp images to trim down size. Changes like this will carry into the diff and when the patch is applied, it will also remove those files.
