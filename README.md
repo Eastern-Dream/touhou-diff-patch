@@ -3,11 +3,12 @@ This repository stores the diff for Touhou game update. ZUN's executable touhou 
 ## Diff Procedure
 Starts with the original ver 1.00 directory for each game (or the oldest patchable version that is available).
 
-1. Create a copy of the game directory to be patched
-2. Drop ZUN executable patch into game directory
-3. Run ZUN executable patch through WINE 32-bit (with `LC_ALL=ja_JP.UTF-8`)
-4. Remove ZUN executable patch from the game directory
-5. Generate diff via `diff -Naur before-patch/ after-patch/ > name_of_patch.diff`
+1. Recursively rename all file extension to lowercase
+2. Create a copy of the game directory to be patched
+3. Drop ZUN executable patch into game directory
+4. Run ZUN executable patch through WINE 32-bit (with `LC_ALL=ja_JP.UTF-8`)
+5. Remove ZUN executable patch from the game directory
+6. Generate diff via `diff -Naur before-patch/ after-patch/ > name_of_patch.diff`
 
 The diff file should be named after the name of the ZUN executable patch minus the `.exe` extension. For example, changes made by running `kouma_update102f.EXE` should make the resulting diff be named `kouma_update102f.diff`. Normalization of diff file naming like this allows for search or listing of diff files to yield a correct order to apply patches.
 
@@ -25,7 +26,10 @@ In case there were bad patches applied and it left a bunch of reject files, simp
 find directory_with_bad_patch/ -name '*.rej' -exec rm {} \;
 ```
 
-TODO: Find good way to automate applying all patch in-order, and only apply if the entire patch applies cleanly
+TODO:
+- Add snippet for recursive renaming lowercase extension
+- Find good way to automate applying all patch in-order, and only apply if the entire patch applies cleanly
+- Wrap all of patch procedure automation into a script
 
 ## Caveats
 For contributors, it is important that you get original game directory with every assets in it. Some distributed copies may have intentionally removed original game asset, for example .bmp images to trim down size. Changes like this will carry into the diff and when the patch is applied, it will also remove those files.
