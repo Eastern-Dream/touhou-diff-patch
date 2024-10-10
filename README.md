@@ -30,6 +30,3 @@ TODO:
 - Add snippet for recursive renaming lowercase extension
 - Find good way to automate applying all patch in-order, and only apply if the entire patch applies cleanly
 - Wrap all of patch procedure automation into a script
-
-## Caveats
-For contributors, it is important that you get original game directory with every assets in it. Some distributed copies may have intentionally removed original game asset, for example .bmp images to trim down size. Changes like this will carry into the diff and when the patch is applied, it will also remove those files.
