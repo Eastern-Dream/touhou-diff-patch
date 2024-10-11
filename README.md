@@ -15,9 +15,23 @@ The diff file should be named after the name of the ZUN executable patch minus t
 This process is repeated between each patch stage until the latest version is reached. Contributors should follow the same procedure.
 
 ## Patch Procedure
-Only apply to original game directory, pre-patched one may not work! Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply dry-run:
+Only applies if you have the original JP game directory, pre-patched one may not work!
+
+### Using git apply
+The simplest procedure is using `git apply`, note that you need to be in the game directory before running command:
 ```
-patch -Np1 --no-backup-if-mismatch -d directory_to_apply_the_patch_on/ --dry-run < patch_to_apply.diff
+git apply /path/to/patch_to_apply.diff
+```
+You can also do a glob pattern to a directory containing diff files. Due to naming convention, this should always apply patch in the correct order.
+```
+git apply dir_containing_diff_files/*.diff
+```
+
+# Using GNU patch
+Another alternative procedure not using `git apply` but with GNU patch instead.
+Open `readme.txt` to see what game version you currently have and determine what diff to use to patch your game to the latest version. To apply patch, simply dry-run:
+```
+patch -Np1 --no-backup-if-mismatch -d dir_to_apply_patch_onto/ --dry-run < patch_to_apply.diff
 ```
 When the set of flags above is used, it will automatically skip invalid or previously applied patch file, only leaving reject files. Thus, it is safe to use this command even on wrong diff without dry run. If the patch applies cleanly, remove the `--dry-run` flag and re-run the command.
 
@@ -25,6 +39,18 @@ In case there were bad patches applied and it left a bunch of reject files, simp
 ```
 find directory_with_bad_patch/ -name '*.rej' -exec rm {} \;
 ```
+
+### Windows
+You need to install Git for Windows (https://git-scm.com/downloads/win). This gives two things that is needed:
+- `git apply` and optionally GNU patch
+- Bash shell
+Commands involving `git apply` will also works on Windows through the Git Bash terminal. This is the recommended way.
+
+If you choose use GNU patch then you must add `--binary` flag like so to ignore different line endings:
+```
+patch -Np1 --no-backup-if-mismatch --binary -d dir_to_apply_patch_onto/ --dry-run < patch_to_apply.diff
+```
+
 
 TODO:
 - Add snippet for recursive renaming lowercase extension
