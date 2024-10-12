@@ -2,12 +2,13 @@ This repository stores the diff for Touhou game update. ZUN's executable touhou 
 
 # Patching Prerequisite
 ### Linux
-You only need `git` to provide git patch tools. Alternatively if you are not using `git`, you need GNU patch from `patchutils` respectively. GNU patch may also exists in different common UNIX utilities program like `busybox` or `toybox`.
+You only need `git` to provide git apply. Alternatively if you are not using git apply, you need GNU patch from `patchutils`. GNU patch may also exists in different common UNIX utilities program like `busybox` or `toybox`.
 
 ### Windows
 You need to install Git for Windows (https://git-scm.com/downloads/win). This gives two things that is needed:
 - `git apply` and optionally GNU patch
 - Bash shell
+All instructions can only be done in the Git Bash terminal.
 
 # Diff Procedure
 You need GNU diff from `diffutils` or `busybox` or `toybox`. Git diff is not supported as it does not produce interoperable patch file. Please only perform this on Linux.
