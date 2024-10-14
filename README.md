@@ -8,6 +8,7 @@ You only need `git` to provide git apply. Alternatively if you are not using git
 You need to install Git for Windows (https://git-scm.com/downloads/win). This gives two things that is needed:
 - `git apply` and optionally GNU patch
 - Bash shell
+
 All instructions can only be done in the Git Bash terminal.
 
 # Diff Procedure
